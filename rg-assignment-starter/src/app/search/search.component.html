@@ -1,0 +1,31 @@
+<mat-card>
+    <mat-card-title>Régens időjárás előrejelzés</mat-card-title>
+    <mat-card-content>Add meg a települést</mat-card-content>
+    <div>
+      <mat-form-field>
+        <mat-select panelClass="my-select-panel" (selectionChange)="changeCity($event.value)">
+          <!-- TODO use the cities array to populate this select with options - DONE -->
+          <mat-option *ngFor="let c of cities" [value]="c.name">{{c.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="showWeather()">Mutasd az időjárást</button>
+      </mat-card-actions>
+    </div>
+    <div *ngIf="show">
+      <h1>{{selectedCity}}</h1>
+      <table>
+        <tr>
+          <th>Dátum</th>
+          <th>Idő</th>
+          <th>Várható hőmérséklet</th>
+        </tr>
+        <tr *ngFor="let r of results" >
+          <td>{{r.date}}</td>
+          <td>{{r.time}}</td>
+          <td>{{r.temp}}</td>
+        </tr> 
+
+      </table>
+    </div>
+</mat-card> 
